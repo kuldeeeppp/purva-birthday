@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Happy Birthday Purva 👑💙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --neon-navy: #131936;
+      --deep-midnight: #080c1d;
+      --royal-gold: #e5b95f;
+      --royal-gold-glow: rgba(229, 185, 95, 0.45);
+      --soft-pink: #f472b6;
+      --cozy-blush: #fdf2f8;
+      --text-gold: #fde68a;
+      --text-light: #f8fafc;
+      --card-bg: rgba(19, 25, 54, 0.85);
+      --spring-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 12%, #1e2756 0%, #131936 55%, #050814 100%);
+      color: var(--text-light);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glows */
+    .golden-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .orb-1 { width: 300px; height: 300px; background: rgba(229, 185, 95, 0.2); top: -60px; left: -60px; }
+    .orb-2 { width: 320px; height: 320px; background: rgba(244, 114, 182, 0.16); bottom: -70px; right: -70px; }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Phone Shell Card */
+    .app-frame {
+      width: 100%;
+      max-width: 420px;
+      height: 94vh;
+      height: 94dvh;
+      max-height: 790px;
+      background: var(--card-bg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(229, 185, 95, 0.38);
+      border-radius: 38px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(229, 185, 95, 0.2);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 20px;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    /* Top Navigation Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      z-index: 20;
+    }
+
+    .nav-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(229, 185, 95, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--royal-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.25s var(--spring-easing);
+      font-size: 16px;
+    }
+    .nav-btn:active {
+      transform: scale(0.86);
+    }
+
+    .music-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(8, 12, 29, 0.88);
+      border: 1px solid rgba(229, 185, 95, 0.35);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      color: var(--text-gold);
+    }
+    .music-btn {
+      background: linear-gradient(135deg, var(--royal-gold), #fef08a);
+      border: none;
+      color: #131936;
+      font-weight: 800;
+      font-size: 10px;
+      padding: 4px 11px;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--royal-gold-glow);
+    }
+
+    /* Screens Base */
+    .screen-panel {
+      position: absolute;
+      top: 80px;
+      bottom: 85px;
+      left: 20px;
+      right: 20px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px) scale(0.96);
+      transition: opacity 0.45s ease, transform 0.45s var(--spring-easing);
+    }
+    .screen-panel.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Typography */
+    .royal-heading {
+      font-family: 'Cinzel', serif;
+      color: var(--royal-gold);
+      font-size: 1.55rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 15px rgba(229, 185, 95, 0.4);
+      margin-bottom: 6px;
+    }
+    .cursive-tag {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2rem;
+      color: var(--soft-pink);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .cozy-sub {
+      font-size: 0.91rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      padding: 0 8px;
+    }
+
+    /* Buttons */
+    .btn-royal {
+      background: linear-gradient(135deg, #dfb15b 0%, #fae09c 50%, #cca044 100%);
+      color: #080c1d;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      padding: 13px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px var(--royal-gold-glow);
+      transition: transform 0.25s var(--spring-easing);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-royal:active {
+      transform: scale(0.92);
+    }
+    .btn-pink-soft {
+      background: rgba(244, 114, 182, 0.15);
+      border: 1px solid var(--soft-pink);
+      color: var(--cozy-blush);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 13px 34px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s var(--spring-easing);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --------------------------------------
+       SCREEN 1: WELCOME (CLEAN 1 YES + 1 RUNAWAY NO)
+    -------------------------------------- */
+    .mascot-box {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 15px;
+      position: relative;
+      animation: floatMascot 3s infinite ease-in-out alternate;
+    }
+    @keyframes floatMascot {
+      0% { transform: translateY(0px) rotate(-1.5deg); }
+      100% { transform: translateY(-10px) rotate(2deg); }
+    }
+    .mascot-crown {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 26px;
+      filter: drop-shadow(0 0 10px gold);
+    }
+    .btn-dock {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      margin-top: 15px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* --------------------------------------
+       SCREEN 2: CAKE & CANDLE (FLAME ONLY + SMOKE)
+    -------------------------------------- */
+    .cake-box {
+      margin: 10px 0;
+      position: relative;
+      animation: gentleBounce 2.5s infinite ease-in-out;
+      cursor: default;
+    }
+    @keyframes gentleBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .cake-svg {
+      width: 185px;
+      height: 185px;
+      filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6));
+    }
+
+    .flame-hotspot {
+      cursor: pointer;
+    }
+    .candle-flame {
+      transform-origin: 95px 44px;
+      animation: flameWiggle 0.85s infinite alternate ease-in-out;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    @keyframes flameWiggle {
+      0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 8px #ffd700); }
+      100% { transform: scale(1.15) rotate(4deg); filter: drop-shadow(0 0 16px #f59e0b); }
+    }
+
+    .smoke-origin {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      width: 80px;
+      height: 130px;
+      overflow: visible;
+    }
+    .smoke-puff {
+      position: absolute;
+      bottom: 22px;
+      left: calc(50% - var(--size) / 2);
+      width: var(--size);
+      height: var(--size);
+      background: radial-gradient(circle, rgba(225, 230, 245, 0.75) 0%, rgba(185, 195, 220, 0.35) 45%, rgba(150, 160, 190, 0) 70%);
+      border-radius: 50%;
+      opacity: 0;
+      filter: blur(3.5px);
+      animation: riseAndDissipate 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    @keyframes riseAndDissipate {
+      0% { transform: translateY(0) scale(0.4); opacity: 0.85; }
+      25% { transform: translateY(-24px) translateX(var(--drift)) scale(1.3); opacity: 0.65; filter: blur(4.5px); }
+      65% { transform: translateY(-60px) translateX(calc(var(--drift) * 1.8)) scale(2.2); opacity: 0.3; filter: blur(7.5px); }
+      100% { transform: translateY(-95px) translateX(calc(var(--drift) * 2.5)) scale(3.2); opacity: 0; filter: blur(12px); }
+    }
+
+    /* --------------------------------------
+       SCREEN 3: BALLOONS (PURVA MAKES LIFE BEAUTIFUL)
+    -------------------------------------- */
+    .balloon-cluster {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .b-item {
+      width: 66px;
+      height: 82px;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      position: absolute;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: inset -5px -5px 12px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s var(--spring-easing);
+      animation: balloonFloat 3s infinite alternate ease-in-out;
+    }
+    .b-item::after {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 8px solid currentColor;
+    }
+    .b-1 { background: radial-gradient(circle at 35% 35%, #2a356e, #131936); color: #131936; border: 1.5px solid var(--royal-gold); left: 14%; top: 20px; animation-delay: 0s; }
+    .b-2 { background: radial-gradient(circle at 35% 35%, #fbcfe8, #f472b6); color: #f472b6; right: 14%; top: 12px; animation-delay: 0.5s; }
+    .b-3 { background: radial-gradient(circle at 35% 35%, #fae09c, #dfb15b); color: #dfb15b; left: 24%; bottom: 15px; animation-delay: 1s; }
+    .b-4 { background: radial-gradient(circle at 35% 35%, #3d4f9b, #192352); color: #192352; border: 1.5px solid #f472b6; right: 24%; bottom: 25px; animation-delay: 1.4s; }
+
+    @keyframes balloonFloat {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-16px) rotate(4deg); }
+    }
+
+    .revealed-message-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 16px;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 4px;
+    }
+    .word-chip {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.2rem;
+      color: var(--royal-gold);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all 0.45s var(--spring-easing);
+      text-shadow: 0 0 12px rgba(229, 185, 95, 0.6);
+    }
+    .word-chip.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* --------------------------------------
+       SCREEN 4: POLAROID PHOTO GALLERY
+    -------------------------------------- */
+    .polaroid-holder {
+      width: 240px;
+      background: #0d132a;
+      border: 1.5px solid var(--royal-gold);
+      border-radius: 18px;
+      padding: 12px 12px 18px 12px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(229, 185, 95, 0.25);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s var(--spring-easing);
+      margin: 10px 0 16px 0;
+    }
+    .polaroid-holder:hover {
+      transform: scale(1.03) rotate(1deg);
+    }
+    .gold-pin {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+      z-index: 5;
+    }
+    .polaroid-img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #192348;
+      display: block;
+    }
+    .polaroid-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--text-gold);
+      font-size: 1.05rem;
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+    }
+    .gallery-nav-pills {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .pill-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--royal-gold);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .pill-indicator.active {
+      background: var(--royal-gold);
+      box-shadow: 0 0 8px var(--royal-gold);
+      transform: scale(1.3);
+    }
+
+    /* --------------------------------------
+       SCREEN 5: MEANINGFUL TABS
+    -------------------------------------- */
+    .royal-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .tab-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(229, 185, 95, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: all 0.25s var(--spring-easing);
+    }
+    .tab-badge.active {
+      background: linear-gradient(135deg, rgba(229, 185, 95, 0.25), rgba(244, 114, 182, 0.2));
+      border-color: var(--royal-gold);
+      box-shadow: 0 0 16px var(--royal-gold-glow);
+      transform: scale(1.15);
+    }
+    .sweet-card {
+      width: 100%;
+      min-height: 175px;
+      background: rgba(8, 12, 29, 0.75);
+      border: 1px solid rgba(229, 185, 95, 0.35);
+      border-radius: 22px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: inset 0 0 25px rgba(229, 185, 95, 0.05);
+      transition: all 0.3s;
+    }
+    .sweet-card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--royal-gold);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .sweet-card-p {
+      font-size: 0.91rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+    }
+
+    /* --------------------------------------
+       SCREEN 6: THE GIFT
+    -------------------------------------- */
+    .gold-gift {
+      font-size: 4.8rem;
+      cursor: pointer;
+      margin: 30px 0;
+      animation: giftPulse 1.8s infinite var(--spring-easing);
+      filter: drop-shadow(0 10px 24px var(--royal-gold-glow));
+    }
+    @keyframes giftPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.12) rotate(4deg); }
+    }
+
+    /* --------------------------------------
+       SCREEN 7: WORD-BY-WORD TYPEWRITER LETTER
+    -------------------------------------- */
+    .letter-parchment {
+      width: 100%;
+      height: 385px;
+      background: rgba(8, 12, 29, 0.93);
+      border: 1px solid rgba(229, 185, 95, 0.45);
+      border-radius: 24px;
+      padding: 22px 18px;
+      text-align: left;
+      overflow-y: auto;
+      box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.65);
+      position: relative;
+      scroll-behavior: smooth;
+    }
+    .letter-parchment::-webkit-scrollbar {
+      width: 4px;
+    }
+    .letter-parchment::-webkit-scrollbar-thumb {
+      background: var(--royal-gold);
+      border-radius: 10px;
+    }
+
+    .letter-body-p {
+      font-size: 0.92rem;
+      line-height: 1.62;
+      color: #f1f5f9;
+      margin-bottom: 14px;
+    }
+    .letter-heading-gold {
+      font-family: 'Cinzel', serif;
+      color: var(--royal-gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .letter-highlight-cursive {
+      font-family: 'Alex Brush', cursive;
+      font-size: 1.7rem;
+      color: var(--soft-pink);
+      line-height: 1.3;
+      margin-top: 14px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .letter-signoff {
+      text-align: right;
+      color: var(--royal-gold);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      background: var(--royal-gold);
+      margin-left: 3px;
+      vertical-align: text-bottom;
+      box-shadow: 0 0 8px var(--royal-gold);
+      animation: cursorBlink 0.75s infinite;
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Element for Custom Song -->
+  <audio id="customAudio" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="golden-orb orb-1"></div>
+  <div class="golden-orb orb-2"></div>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-frame">
+    
+    <!-- Top Header -->
+    <div class="top-header">
+      <button class="nav-btn" id="backBtn" onclick="stepBack()">←</button>
+      <div class="music-badge">
+        <span>🎵 Purva's Track</span>
+        <button class="music-btn" id="audioToggleBtn" onclick="toggleCustomAudio()">PLAY</button>
+      </div>
+      <div class="nav-btn" style="border-color: rgba(244,114,182,0.4); color: var(--soft-pink);">💙</div>
+    </div>
+
+    <!-- SCREEN 1: WELCOME (ONLY ONE YES BUTTON) -->
+    <section class="screen-panel active" id="view-1">
+      <div class="mascot-box">
+        <div class="mascot-crown">👑</div>
+        <!-- Baby Penguin with Gold Bowtie -->
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <ellipse cx="50" cy="58" rx="30" ry="32" fill="#131936"/>
+          <ellipse cx="50" cy="58" rx="22" ry="26" fill="#f8fafc"/>
+          <ellipse cx="23" cy="58" rx="6" ry="16" transform="rotate(20 23 58)" fill="#131936"/>
+          <ellipse cx="77" cy="58" rx="6" ry="16" transform="rotate(-20 77 58)" fill="#131936"/>
+          <circle cx="43" cy="46" r="3" fill="#131936"/>
+          <circle cx="57" cy="46" r="3" fill="#131936"/>
+          <circle cx="44.2" cy="44.8" r="1.1" fill="#fff"/>
+          <circle cx="58.2" cy="44.8" r="1.1" fill="#fff"/>
+          <ellipse cx="37" cy="53" rx="4" ry="2" fill="#f472b6" opacity="0.6"/>
+          <ellipse cx="63" cy="53" rx="4" ry="2" fill="#f472b6" opacity="0.6"/>
+          <polygon points="50,49 45,55 55,55" fill="#e5b95f"/>
+          <polygon points="44,66 50,70 44,74" fill="#e5b95f"/>
+          <polygon points="56,66 50,70 56,74" fill="#e5b95f"/>
+          <circle cx="50" cy="70" r="2.5" fill="#fef08a"/>
+        </svg>
+      </div>
+
+      <div class="cursive-tag">Special day for a special girl</div>
+      <h1 class="royal-heading">HAPPY BIRTHDAY, PURVA</h1>
+      <p class="cozy-sub">I created a little something just for you, Purva, to celebrate your birthday and how beautiful you make life. Ready to see it?</p>
+
+      <!-- Single Gold Yes Button + Dodging Pink No Button -->
+      <div class="btn-dock">
+        <button class="btn-royal" onclick="stepForward()">Yes</button>
+        <button class="btn-pink-soft" id="runawayBtn" onmouseover="dodgeBtn(event)" onclick="dodgeBtn(event)">No</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: CAKE & CANDLE (FLAME ONLY + SMOKE) -->
+    <section class="screen-panel" id="view-2">
+      <div class="cursive-tag">Close your eyes...</div>
+      <h2 class="royal-heading">Make a Sacred Wish</h2>
+      <p class="cozy-sub">Think of what you want most for this year, then tap the candle flame to blow it out!</p>
+
+      <div class="cake-box">
+        <!-- Dynamic Rising Smoke Origin -->
+        <div class="smoke-origin" id="smokeParticlesContainer"></div>
+
+        <svg class="cake-svg" viewBox="0 0 190 190">
+          <ellipse cx="95" cy="155" rx="72" ry="10" fill="#0d122b" stroke="#e5b95f" stroke-width="1.5"/>
+          <rect x="42" y="105" width="106" height="42" rx="10" fill="#131936" stroke="rgba(229,185,95,0.4)" stroke-width="1.5"/>
+          <rect x="42" y="122" width="106" height="8" fill="#e5b95f"/>
+          <circle cx="65" cy="126" r="3" fill="#f472b6"/>
+          <circle cx="95" cy="126" r="3" fill="#f472b6"/>
+          <circle cx="125" cy="126" r="3" fill="#f472b6"/>
+          <rect x="60" y="70" width="70" height="36" rx="8" fill="#1b244d" stroke="#f472b6" stroke-width="1"/>
+          <rect x="60" y="84" width="70" height="6" fill="#f472b6"/>
+          
+          <rect x="92" y="44" width="6" height="26" fill="url(#goldGrad)" rx="2"/>
+          <line x1="95" y1="44" x2="95" y2="38" stroke="#cbd5e1" stroke-width="1.5"/>
+
+          <!-- SPECIFIC FLAME CLICK TARGET -->
+          <g class="flame-hotspot" onclick="blowCandle(event)">
+            <circle cx="95" cy="28" r="24" fill="transparent" />
+            <path id="flameGraphic" class="candle-flame" d="M95 24 C91 30 89 33 91 38 C93 40 97 40 99 38 C101 33 99 30 95 24 Z" fill="#ffd700"/>
+          </g>
+
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#cca044"/>
+              <stop offset="50%" stop-color="#fae09c"/>
+              <stop offset="100%" stop-color="#cca044"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <p id="cakeStatusPrompt" style="font-size:0.88rem; color:var(--royal-gold); margin-bottom:15px;">🕯️ Tap the candle flame to blow it out</p>
+      <button class="btn-royal" id="afterCakeBtn" style="display:none;" onclick="stepForward()">Continue The Journey →</button>
+    </section>
+
+    <!-- SCREEN 3: BALLOONS (PURVA MAKES LIFE BEAUTIFUL) -->
+    <section class="screen-panel" id="view-3">
+      <div class="cursive-tag">Gentle reminders floating just for you</div>
+      <h2 class="royal-heading">Pop the Balloons</h2>
+      <p class="cozy-sub">Tap all 4 royal balloons to reveal a secret message from the heart...</p>
+
+      <div class="balloon-cluster">
+        <div class="b-item b-1" id="balloon-1" onclick="popBall(1)">👑</div>
+        <div class="b-item b-2" id="balloon-2" onclick="popBall(2)">🌸</div>
+        <div class="b-item b-3" id="balloon-3" onclick="popBall(3)">✨</div>
+        <div class="b-item b-4" id="balloon-4" onclick="popBall(4)">💙</div>
+      </div>
+
+      <div class="revealed-message-container">
+        <span class="word-chip" id="word-1">Purva</span>
+        <span class="word-chip" id="word-2">makes</span>
+        <span class="word-chip" id="word-3">life</span>
+        <span class="word-chip" id="word-4">beautiful</span>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <button class="btn-royal" id="balloonProceedBtn" style="display:none;" onclick="stepForward()">Look At The Birthday Star →</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: POLAROID PHOTO GALLERY -->
+    <section class="screen-panel" id="view-4">
+      <div class="cursive-tag">Pure grace & good vibes</div>
+      <h2 class="royal-heading">Moments of Purva ✨</h2>
+
+      <div class="polaroid-holder" onclick="nextPhoto()">
+        <div class="gold-pin">📌</div>
+        <img class="polaroid-img" id="polaroidDisplay" src="photo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" alt="Purva's Photo" />
+        <div class="polaroid-caption" id="polaroidCaptionText">"Effortlessly beautiful ✨"</div>
+      </div>
+
+      <div class="gallery-nav-pills">
+        <div class="pill-indicator active" onclick="setPhoto(0)"></div>
+        <div class="pill-indicator" onclick="setPhoto(1)"></div>
+        <div class="pill-indicator" onclick="setPhoto(2)"></div>
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--text-gold); margin-bottom: 12px;">(Tap photo to flip to the next memory 📸)</p>
+      <button class="btn-royal" onclick="stepForward()">Why You're Special →</button>
+    </section>
+
+    <!-- SCREEN 5: MEANINGFUL TABS -->
+    <section class="screen-panel" id="view-5">
+      <div class="cursive-tag">Why you stand out so effortlessly</div>
+      <h2 class="royal-heading">For Purva, A Rare Soul</h2>
+      
+      <div class="royal-tabs">
+        <div class="tab-badge active" onclick="showReason(0)">🎓</div>
+        <div class="tab-badge" onclick="showReason(1)">💬</div>
+        <div class="tab-badge" onclick="showReason(2)">👑</div>
+        <div class="tab-badge" onclick="showReason(3)">🐧</div>
+      </div>
+
+      <div class="sweet-card" id="sweetCardBox"></div>
+
+      <div style="margin-top:18px;">
+        <button class="btn-royal" onclick="stepForward()">One Royal Token 🎁</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: THE GIFT -->
+    <section class="screen-panel" id="view-6">
+      <div class="cursive-tag">Before the final words...</div>
+      <h2 class="royal-heading">A Gift of Goodwill</h2>
+      <p class="cozy-sub">Wrap up all the warmth, happiness, and luck for your upcoming chapter.</p>
+
+      <div class="gold-gift" onclick="openRoyalGift()">
+        🎁
+      </div>
+      <p style="font-size: 0.85rem; color: var(--royal-gold);">Tap the gift box to unwrap</p>
+    </section>
+
+    <!-- SCREEN 7: WORD-BY-WORD TYPEWRITER LETTER -->
+    <section class="screen-panel" id="view-7">
+      <div class="cursive-tag">From me to you</div>
+      <h2 class="royal-heading" style="font-size: 1.35rem; margin-bottom: 10px;">A Letter For Purva... 💌</h2>
+
+      <div class="letter-parchment" id="letterScroller">
+        <div id="typewriterBody"></div>
+        <span class="typewriter-cursor" id="typewriterCursor"></span>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <button class="btn-royal" id="replayBtn" style="display:none;" onclick="restartAll()">↺ Replay Experience</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // ========================================================
+    // 🛠️ HER PHOTOS & CAPTIONS:
+    // ========================================================
+    const purvaPhotos = [
+      {
+        src: "photo1.jpg",
+        caption: "“The prettiest smile ✨”"
+      },
+      {
+        src: "photo2.jpg",
+        caption: "“Making every school day count 🎓”"
+      },
+      {
+        src: "photo3.jpg",
+        caption: "“Naturally gorgeous & endlessly fun 💙”"
+      }
+    ];
+
+    let currentPhotoIdx = 0;
+    function updatePhotoUI() {
+      const p = purvaPhotos[currentPhotoIdx];
+      const imgEl = document.getElementById('polaroidDisplay');
+      const captionEl = document.getElementById('polaroidCaptionText');
+      imgEl.src = p.src;
+      captionEl.innerText = p.caption;
+
+      document.querySelectorAll('.pill-indicator').forEach((pill, i) => {
+        pill.classList.toggle('active', i === currentPhotoIdx);
+      });
+    }
+
+    function nextPhoto() {
+      currentPhotoIdx = (currentPhotoIdx + 1) % purvaPhotos.length;
+      updatePhotoUI();
+    }
+
+    function setPhoto(idx) {
+      currentPhotoIdx = idx;
+      updatePhotoUI();
+    }
+
+    // ========================================================
+    // 🎵 CUSTOM AUDIO CONTROLLER
+    // ========================================================
+    const audioEl = document.getElementById('customAudio');
+    let isMusicPlaying = false;
+
+    function toggleCustomAudio() {
+      const btn = document.getElementById('audioToggleBtn');
+      if (isMusicPlaying) {
+        audioEl.pause();
+        isMusicPlaying = false;
+        btn.innerText = "PLAY";
+      } else {
+        const playPromise = audioEl.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isMusicPlaying = true;
+            btn.innerText = "PAUSE";
+          }).catch(() => {});
+        }
+      }
+    }
+
+    // ========================================================
+    // ⌨️ SUBTLE MECHANICAL TYPEWRITER AUDIO SYNTH
+    // ========================================================
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    function playTypewriterClick() {
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1050 + Math.random() * 350, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.035);
+
+        gain.gain.setValueAtTime(0.024, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } catch (e) {}
+    }
+
+    // Navigation and Logic
+    let activeIndex = 1;
+    const maxScreens = 7;
+    let balloonsDone = 0;
+
+    const cardsData = [
+      {
+        title: "The Final School Chapter 🎓",
+        desc: "Celebrating your very last birthday as a school student! It's a golden, nostalgic milestone. May you finish this chapter with flying colors, zero regrets, and memories you'll smile at for decades."
+      },
+      {
+        title: "Serendipity on Discord 💬",
+        desc: "We only met a couple days ago, yet you made conversation feel so familiar, easy, and endlessly fun. It proves you don't need years to recognize a truly lovely, beautiful person."
+      },
+      {
+        title: "Effortless Grace & Beauty 👑",
+        desc: "You have that rare combination of being hilarious, sharp, sweet, and aesthetically charming. The neon navy royalty title fits your vibe completely."
+      },
+      {
+        title: "Penguin Cozy Soul 🐧",
+        desc: "Just like the cool, adorable penguins you adore, you bring a calm, joyful, and utterly lovable presence everywhere you show up."
+      }
+    ];
+
+    function updateView(idx) {
+      document.querySelectorAll('.screen-panel').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(`view-${idx}`);
+      if (target) {
+        target.classList.add('active');
+        activeIndex = idx;
+      }
+      document.getElementById('backBtn').style.visibility = (idx === 1) ? 'hidden' : 'visible';
+
+      if (idx === 4) updatePhotoUI();
+      if (idx === 5) showReason(0);
+      if (idx === 7) startWordByWordLetter();
+    }
+
+    function stepForward() {
+      if (activeIndex < maxScreens) updateView(activeIndex + 1);
+    }
+
+    function stepBack() {
+      if (activeIndex > 1) {
+        stopTypewriter();
+        updateView(activeIndex - 1);
+      }
+    }
+
+    // ========================================================
+    // 🏃 NO BUTTON DODGES (STAYS AS 'NO' & REMAINS PINK!)
+    // ========================================================
+    function dodgeBtn(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const btn = document.getElementById('runawayBtn');
+      // Jump to a random spot within safe container bounds
+      const randomX = (Math.random() > 0.5 ? 1 : -1) * (45 + Math.random() * 55);
+      const randomY = (Math.random() - 0.5) * 80;
+      
+      btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      // Strictly remains "No" so there is NEVER a second Yes button!
+      btn.innerText = "No";
+    }
+
+    // ========================================================
+    // 🕯️ CANDLE BLOW ACTION (ONLY ON FLAME TAP + SMOKE PUFFS)
+    // ========================================================
+    function blowCandle(e) {
+      if (e) e.stopPropagation();
+      const flame = document.getElementById('flameGraphic');
+      
+      if (flame && flame.style.opacity !== '0') {
+        flame.style.opacity = '0';
+        flame.style.transform = 'scale(0.15)';
+        
+        spawnSmokePuffs();
+
+        document.getElementById('cakeStatusPrompt').innerText = "✨ Your wish is sealed with the stars!";
+        document.getElementById('afterCakeBtn').style.display = 'inline-flex';
+        blastConfetti();
+      }
+    }
+
+    function spawnSmokePuffs() {
+      const container = document.getElementById('smokeParticlesContainer');
+      container.innerHTML = '';
+
+      for (let i = 0; i < 7; i++) {
+        const puff = document.createElement('div');
+        puff.className = 'smoke-puff';
+        const delay = i * 160;
+        const drift = (Math.random() - 0.5) * 45;
+        const size = 12 + Math.random() * 15;
+        puff.style.setProperty('--drift', `${drift}px`);
+        puff.style.setProperty('--size', `${size}px`);
+        puff.style.animationDelay = `${delay}ms`;
+        container.appendChild(puff);
+      }
+    }
+
+    function popBall(id) {
+      const balloon = document.getElementById(`balloon-${id}`);
+      if (balloon.style.display !== 'none') {
+        balloon.style.display = 'none';
+        const word = document.getElementById(`word-${id}`);
+        word.classList.add('show');
+        balloonsDone++;
+
+        if (balloonsDone === 4) {
+          blastConfetti();
+          document.getElementById('balloonProceedBtn').style.display = 'inline-flex';
+        }
+      }
+    }
+
+    function showReason(idx) {
+      const tabs = document.querySelectorAll('.tab-badge');
+      tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+      const box = document.getElementById('sweetCardBox');
+      const item = cardsData[idx];
+      box.innerHTML = `
+        <div class="sweet-card-title">${item.title}</div>
+        <p class="sweet-card-p">${item.desc}</p>
+      `;
+    }
+
+    function openRoyalGift() {
+      blastConfetti();
+      setTimeout(() => {
+        stepForward();
+      }, 500);
+    }
+
+    // ========================================================
+    // ✍️ WORD-BY-WORD TYPEWRITER ENGINE
+    // ========================================================
+    const letterParagraphs = [
+      {
+        className: "letter-heading-gold",
+        text: "To dearest Purva, 👑"
+      },
+      {
+        className: "letter-body-p",
+        text: "Happy Birthday! It’s still so wonderful to think we crossed paths on Discord just a few days ago. Sometimes you meet someone and it takes months to click—with you, your humor, warmth, and easygoing energy made it feel like we'd been friends forever."
+      },
+      {
+        className: "letter-body-p",
+        text: "Today holds something so poetic and special: your very last birthday in school. That golden threshold where classroom laughter, notebook doodles, and hallway chats slowly turn into cherished memories. Cherish every single moment of this final school chapter."
+      },
+      {
+        className: "letter-body-p",
+        text: "Beyond being effortlessly gorgeous, you have this rare, cozy presence that instantly lights up any conversation. You genuinely make the world feel lighter, warmer, and a whole lot more fun."
+      },
+      {
+        className: "letter-body-p",
+        text: "I wish you fearless confidence in every dream you chase, great marks in all your exams, and days filled with your favorite songs and genuine smiles."
+      },
+      {
+        className: "letter-highlight-cursive",
+        text: "May this year be your most unforgettable masterpiece. Keep shining, Purva! 💙✨"
+      },
+      {
+        className: "letter-signoff",
+        text: "— Cheering for you always 🥂"
+      }
+    ];
+
+    let typewriterTimer = null;
+    let isTypewriterActive = false;
+
+    function stopTypewriter() {
+      if (typewriterTimer) clearTimeout(typewriterTimer);
+      isTypewriterActive = false;
+    }
+
+    function startWordByWordLetter() {
+      if (isTypewriterActive) return;
+      isTypewriterActive = true;
+
+      const container = document.getElementById('typewriterBody');
+      const scroller = document.getElementById('letterScroller');
+      const cursor = document.getElementById('typewriterCursor');
+      const replayBtn = document.getElementById('replayBtn');
+
+      container.innerHTML = '';
+      cursor.style.display = 'inline-block';
+      replayBtn.style.display = 'none';
+
+      let pIndex = 0;
+      let wIndex = 0;
+      let currentWords = [];
+      let currentEl = null;
+
+      function typeNextWord() {
+        if (!isTypewriterActive) return;
+
+        if (!currentEl || wIndex >= currentWords.length) {
+          if (pIndex >= letterParagraphs.length) {
+            cursor.style.display = 'none';
+            replayBtn.style.display = 'inline-flex';
+            blastConfetti();
+            isTypewriterActive = false;
+            return;
+          }
+
+          const pData = letterParagraphs[pIndex];
+          currentEl = document.createElement('div');
+          currentEl.className = pData.className;
+          container.appendChild(currentEl);
+
+          currentWords = pData.text.split(' ');
+          wIndex = 0;
+          pIndex++;
+        }
+
+        const word = currentWords[wIndex];
+        const span = document.createElement('span');
+        span.textContent = (wIndex === 0 ? '' : ' ') + word;
+        currentEl.appendChild(span);
+
+        playTypewriterClick();
+
+        wIndex++;
+        scroller.scrollTop = scroller.scrollHeight;
+
+        let delay = 90;
+        if (word.endsWith('.') || word.endsWith('!') || word.endsWith('?')) {
+          delay = 320;
+        } else if (word.endsWith(',')) {
+          delay = 180;
+        }
+
+        typewriterTimer = setTimeout(typeNextWord, delay);
+      }
+
+      typewriterTimer = setTimeout(typeNextWord, 400);
+    }
+
+    function restartAll() {
+      stopTypewriter();
+      balloonsDone = 0;
+      document.querySelectorAll('.b-item').forEach(b => b.style.display = 'flex');
+      document.querySelectorAll('.word-chip').forEach(w => w.classList.remove('show'));
+      document.getElementById('balloonProceedBtn').style.display = 'none';
+      document.getElementById('replayBtn').style.display = 'none';
+      document.getElementById('afterCakeBtn').style.display = 'none';
+      
+      const flame = document.getElementById('flameGraphic');
+      flame.style.opacity = '1';
+      flame.style.transform = 'scale(1)';
+      document.getElementById('smokeParticlesContainer').innerHTML = '';
+      document.getElementById('cakeStatusPrompt').innerText = "🕯️ Tap the candle flame to blow it out";
+
+      // Reset No button position and label
+      const runawayBtn = document.getElementById('runawayBtn');
+      if (runawayBtn) {
+        runawayBtn.style.transform = 'translate(0, 0)';
+        runawayBtn.innerText = 'No';
+      }
+      
+      updateView(1);
+    }
+
+    // Confetti Engine
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confetti = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function blastConfetti() {
+      const palette = ['#e5b95f', '#fae09c', '#f472b6', '#131936', '#ffffff', '#60a5fa'];
+      for (let i = 0; i < 60; i++) {
+        confetti.push({
+          x: canvas.width / 2,
+          y: canvas.height * 0.45,
+          w: Math.random() * 7 + 4,
+          h: Math.random() * 5 + 3,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 0.6) * 14,
+          tiltAngle: 0,
+          tiltSpeed: Math.random() * 0.08 + 0.04
+        });
+      }
+    }
+
+    function renderConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < confetti.length; i++) {
+        const p = confetti[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.25;
+        p.tiltAngle += p.tiltSpeed;
+
+        ctx.save();
+        ctx.fillStyle = p.color;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.tiltAngle);
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      confetti = confetti.filter(p => p.y < canvas.height);
+      requestAnimationFrame(renderConfetti);
+    }
+    renderConfetti();
+
+    // Start on Screen 1
+    updateView(1);
+  </script>
+</body>
+</html>
